@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NVIDIA SETTINGS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Bebas Neue', sans-serif;
+      text-decoration: none;
+    }
+
+    body {
+      background: url('background.jpg') center/cover no-repeat fixed;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 50px 30px;
+      color: #fff;
+      position: relative;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 50px;
+    }
+
+    .cs-logo {
+      height: 60px;
+      width: auto;
+      image-rendering: -webkit-optimize-contrast;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        gap: 15px;
+      }
+      .cs-logo {
+        height: 50px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .header {
+        gap: 12px;
+      }
+      .cs-logo {
+        height: 40px;
+      }
+    }
+
+    h1 {
+      font-size: 5rem;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 1;
+    }
+
+    /* Слайдер */
+    .slider-container {
+      max-width: 800px;
+      margin: 30px auto;
+      text-align: center;
+    }
+
+    .slider-controls {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .slider-btn {
+      background: transparent;
+      color: #0f0;
+      border: 1px solid #0f0;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .slider-btn:hover {
+      background: rgba(0, 255, 0, 0.1);
+      box-shadow: 0 0 8px #0f0;
+    }
+
+    .slider-image {
+      max-width: 100%;
+      height: auto;
+      margin: 20px 0;
+      border: 2px solid #0f0;
+      box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+      object-fit: contain;
+      object-position: center;
+      background: #000;
+    }
+
+    .image-caption {
+      font-size: 1.1rem;
+      margin-top: 10px;
+      color: #0ff;
+      letter-spacing: 2px;
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 3.5rem; letter-spacing: 6px; }
+      .slider-container { max-width: 600px; }
+      .slider-btn { font-size: 1rem; padding: 8px 15px; }
+      .slider-image { max-height: 400px; }
+    }
+
+    @media (max-width: 480px) {
+      h1 { font-size: 2.8rem; letter-spacing: 5px; }
+      .slider-container { max-width: 300px; }
+      .slider-btn { font-size: 0.9rem; padding: 6px 12px; }
+      .slider-image { max-height: 300px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <!-- Кликабельный логотип CS 1.6 -->
+    <img src="cstrike.ico" alt="CS 1.6 Logo" class="cs-logo" onclick="window.location.href='index.html'">
+    <h1>NVIDIA SETTINGS</h1>
+  </div>
+
+  <div class="slider-container">
+    <div class="slider-controls">
+      <button id="prevBtn" class="slider-btn">←</button>
+      <button id="nextBtn" class="slider-btn">→</button>
+    </div>
+
+    <img id="sliderImage" class="slider-image" src="images/settings1.jpg" alt="Settings 1">
+
+    <div class="image-caption" id="caption">Settings 1</div>
+  </div>
+
+  <script>
+    const images = [
+      { src: 'images/settings1.jpg', caption: 'Settings 1' },
+      { src: 'images/settings2.jpg', caption: 'Settings 2' },
+      { src: 'images/settings3.jpg', caption: 'Settings 3' },
+      { src: 'images/settings4.jpg', caption: 'Settings 4' }
+    ];
+
+    let currentIndex = 0;
+    const sliderImage = document.getElementById('sliderImage');
+    const caption = document.getElementById('caption');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function updateSlider() {
+      sliderImage.src = images[currentIndex].src;
+      caption.textContent = images[currentIndex].caption;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      updateSlider();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % images.length;
+      updateSlider();
+    });
+  </script>
+</body>
+</html>
